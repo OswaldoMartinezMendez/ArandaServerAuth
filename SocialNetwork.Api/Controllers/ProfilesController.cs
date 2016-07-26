@@ -14,7 +14,7 @@ namespace SocialNetwork.Api.Controllers
 {
     
     [EnableCors(origins: "*",headers:"*",methods:"*")]
-    public class ProfilesController : SocialNetworkApiController
+    public class ProfilesController : BaseController
     {
         private readonly IProfileService _profileService;
         private readonly IUserService _userService;

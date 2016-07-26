@@ -6,7 +6,7 @@ using SocialNetwork.Data.Repositories;
 
 namespace SocialNetwork.Api.Controllers
 {
-    public class UsersController : SocialNetworkApiController
+    public class UsersController : BaseController
     {
         //private readonly IUserRepository userRepository;
 

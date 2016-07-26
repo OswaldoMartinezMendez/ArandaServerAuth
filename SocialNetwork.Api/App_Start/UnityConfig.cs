@@ -19,6 +19,7 @@ namespace SocialNetwork.Api
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IUserService, UserServices>();
             container.RegisterType<IProfileService, ProfileService>();
+            container.RegisterType<ICommentService, CommentService>();
             container.InitializeContainer();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
