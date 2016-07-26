@@ -12,21 +12,23 @@ namespace SocialNetwork.Domain.Entities
     {
         public int Id { get; set; }
         [Required]
+        [MaxLengthAttribute(250)]
         public string Name { get; set; }
         [Required]
         public string Address { get; set; }
         [Required]
+        [MaxLengthAttribute(250)]
         public string Phone { get; set; }
         [Required]
-        [EmailAddress]
+        [EmailAddressAttribute]
         public string Email { get; set; }
         [Required]
+        [MaxLengthAttribute(250)]
         public string Subject { get; set; }
         [Required]
+        [MaxLengthAttribute(250)]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-
-        public virtual Profile Profile { get; set; } 
     }
 }
