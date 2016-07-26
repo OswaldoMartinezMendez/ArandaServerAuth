@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.IoC", "Social
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Contracts", "SocialNetwork.Contracts\SocialNetwork.Contracts.csproj", "{2ADCA3FA-971D-4230-82CA-DC16033AF795}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Concrets", "SocialNetwork.Concrets\SocialNetwork.Concrets.csproj", "{B4699137-B1C4-4C8F-B35A-1871F93894B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{2ADCA3FA-971D-4230-82CA-DC16033AF795}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ADCA3FA-971D-4230-82CA-DC16033AF795}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ADCA3FA-971D-4230-82CA-DC16033AF795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4699137-B1C4-4C8F-B35A-1871F93894B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4699137-B1C4-4C8F-B35A-1871F93894B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4699137-B1C4-4C8F-B35A-1871F93894B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4699137-B1C4-4C8F-B35A-1871F93894B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,5 +60,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7DE605B0-83DD-44C8-A08B-937B006E624E} = {78DB5919-2525-4447-8B2D-F48487B9CBE2}
 		{2ADCA3FA-971D-4230-82CA-DC16033AF795} = {78DB5919-2525-4447-8B2D-F48487B9CBE2}
+		{B4699137-B1C4-4C8F-B35A-1871F93894B2} = {78DB5919-2525-4447-8B2D-F48487B9CBE2}
 	EndGlobalSection
 EndGlobal
