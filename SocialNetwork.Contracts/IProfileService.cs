@@ -10,5 +10,6 @@ namespace SocialNetwork.Contracts
         Task<bool> UpdateProfileAsync(Profile profile);
         Task<int> InserProfiletAsync(Profile newProfile);
         Task<bool> RemoveProfiletAsync(int idProfile);
+        Task<IEnumerable<Profile>> GetByHierarchyAsync(int iduser);
     }
 }

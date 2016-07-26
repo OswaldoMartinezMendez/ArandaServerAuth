@@ -46,7 +46,8 @@ namespace SocialNetwork.Data.Migrations.ProfileMigrations
                     Action = "Read",
                     Alias = "Visitante",
                     Enabled = true,
-                    Secret = "secret"
+                    Secret = "secret",
+                    Hierarchy = 4
                 });
         }
     }

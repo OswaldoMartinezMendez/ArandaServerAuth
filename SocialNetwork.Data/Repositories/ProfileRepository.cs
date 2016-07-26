@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using SocialNetwork.Data.DataContext;
 using SocialNetwork.Domain.Entities;
@@ -45,6 +46,17 @@ namespace SocialNetwork.Data.Repositories
             _ProfileDbContext.Profiles.Remove(profile);
             return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
+
+        public async Task<IEnumerable<Profile>> GetByHierarchyAsync(int idUser)
+        {
+            var list = new List<Profile>();
+            var profiles = await
+                _ProfileDbContext.Profiles.Where(p => p.User.Id.Equals(idUser))
+                    .OrderBy(p => p.Hierarchy)
+                    .ToListAsync()
+                    .ConfigureAwait(false);
+            return profiles.Any() ? profiles : list;
+        }
     }
 
     public interface IProfileRepository
@@ -53,5 +65,6 @@ namespace SocialNetwork.Data.Repositories
         Task<bool> UpdateAsync(Profile profile);
         Task<int> InsertAsync(Profile newProfile);
         Task<bool> RemoveAsync(int idProfile);
+        Task<IEnumerable<Profile>> GetByHierarchyAsync(int idUser);
     }
 }

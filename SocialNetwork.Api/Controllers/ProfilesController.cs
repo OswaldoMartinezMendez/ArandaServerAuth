@@ -21,7 +21,18 @@ namespace SocialNetwork.Api.Controllers
         public async Task<IHttpActionResult> GetAsync()
         {
             var profiles = await _profileService.GetProfileForAsync().ConfigureAwait(false);
-            return profiles.Any() ? Ok(profiles) : null;
+            if (profiles.Any())
+                return Ok(profiles);
+            return NotFound();
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAsync(int iduser)
+        {
+            var profiles = await _profileService.GetByHierarchyAsync(iduser).ConfigureAwait(false);
+            if (profiles.Any())
+                return Ok(profiles);
+            return NotFound();
         }
 
         [HttpPut]

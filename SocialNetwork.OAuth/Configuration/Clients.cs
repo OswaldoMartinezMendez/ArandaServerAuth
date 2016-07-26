@@ -1,12 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web.Hosting;
+using System.Web.Management;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Models;
+using SocialNetwork.Contracts;
+using SocialNetwork.Domain.Entities;
+using SocialNetwork.IoC;
 
 namespace SocialNetwork.OAuth.Configuration
 {
     public class Clients
     {
+        private readonly IProfileService _profileService;
+        public Clients()
+        {
+            _profileService = Factory.Resolver<IProfileService>();
+        }
         public static IEnumerable<Client> GetClients()
         {
             return new[]
@@ -52,6 +64,11 @@ namespace SocialNetwork.OAuth.Configuration
                     AccessTokenLifetime = 3600
                 }
             };
+        }
+
+        public Task<IEnumerable<Profile>> GetProfiles(int iduser)
+        {
+            return _profileService.GetByHierarchyAsync(iduser);
         }
     }
 }

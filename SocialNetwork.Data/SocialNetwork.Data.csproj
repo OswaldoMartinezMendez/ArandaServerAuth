@@ -59,9 +59,9 @@
       <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CommentMigration\Configuration.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607261858520_InitialCreate.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607261858520_InitialCreate.Designer.cs">
-      <DependentUpon>201607261858520_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.cs" />
+    <Compile Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.Designer.cs">
+      <DependentUpon>201607261912236_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ProfileMigrations\Configuration.cs" />
     <Compile Include="Migrations\UserMigrations\201607252320182_InitialCreate.cs" />
@@ -86,8 +86,8 @@
     <EmbeddedResource Include="Migrations\CommentMigration\201607261341257_InitialCreate.resx">
       <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ProfileMigrations\201607261858520_InitialCreate.resx">
-      <DependentUpon>201607261858520_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.resx">
+      <DependentUpon>201607261912236_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UserMigrations\201607252320182_InitialCreate.resx">
       <DependentUpon>201607252320182_InitialCreate.cs</DependentUpon>

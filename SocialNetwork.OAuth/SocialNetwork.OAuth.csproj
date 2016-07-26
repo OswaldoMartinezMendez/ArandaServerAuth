@@ -102,6 +102,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Contracts\SocialNetwork.Contracts.csproj">
+      <Project>{2adca3fa-971d-4230-82ca-dc16033af795}</Project>
+      <Name>SocialNetwork.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork.Domain\SocialNetwork.Domain.csproj">
+      <Project>{612b7111-abe4-40d4-9089-a7368a6e79dc}</Project>
+      <Name>SocialNetwork.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork.IoC\SocialNetwork.IoC.csproj">
+      <Project>{7de605b0-83dd-44c8-a08b-937b006e624e}</Project>
+      <Name>SocialNetwork.IoC</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

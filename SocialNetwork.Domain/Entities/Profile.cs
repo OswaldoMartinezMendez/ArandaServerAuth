@@ -24,6 +24,8 @@ namespace SocialNetwork.Domain.Entities
         public bool Enabled { get; set; }
         [MaxLengthAttribute(250)]
         public string Action { get; set; }
+        [Required]
+        public int Hierarchy { get; set; }
 
         public virtual User User { get; set; } 
     }
