@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using SocialNetwork.Api.Helpers;
+using SocialNetwork.Contracts;
 using SocialNetwork.Data.Repositories;
 using SocialNetwork.Domain.Entities;
 using Thinktecture.IdentityModel.WebApi;
@@ -15,23 +16,23 @@ namespace SocialNetwork.Api.Controllers
     [EnableCors(origins: "*",headers:"*",methods:"*")]
     public class ProfilesController : SocialNetworkApiController
     {
-        private readonly IProfileRepository profileRepository;
-        private readonly IUserRepository userRepository;
+        private readonly IProfileService _profileService;
+        private readonly IUserService _userService;
 
-        public ProfilesController(IProfileRepository profileRepository, IUserRepository userRepository)
+        public ProfilesController(IProfileService profileService, IUserService userService)
         {
-            this.profileRepository = profileRepository;
-            this.userRepository = userRepository;
+            this._profileService = profileService;
+            this._userService = userService;
         }
 
         [HttpGet]
         [ResourceAuthorize("Total", "ContactDetails")]
         public async Task<IHttpActionResult> GetAsync()
         {
-            //var email = ((ClaimsPrincipal) User)
-            //    .Claims
-            //    .FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
-            //    ?.Value;
+            var email = ((ClaimsPrincipal) User)
+                .Claims
+                .FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+                ?.Value;
 
             //if (email == null)
             //{
