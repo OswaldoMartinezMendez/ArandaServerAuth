@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
 using SocialNetwork.Data.DataContext;
 using SocialNetwork.Domain.Entities;
 
@@ -13,10 +10,12 @@ namespace SocialNetwork.Data.Repositories
     public class ProfileRepository : IProfileRepository
     {
         private readonly ProfilesDb _ProfileDbContext;
+
         public ProfileRepository()
         {
             _ProfileDbContext = new ProfilesDb();
         }
+
         public async Task<IEnumerable<Profile>> GetForAsync()
         {
             return await _ProfileDbContext.Profiles.ToListAsync().ConfigureAwait(false);
@@ -24,7 +23,8 @@ namespace SocialNetwork.Data.Repositories
 
         public async Task<bool> UpdateAsync(Profile profile)
         {
-            var existing = await _ProfileDbContext.Profiles.FirstAsync(c => c.Id.Equals(profile.Id)).ConfigureAwait(false);
+            var existing =
+                await _ProfileDbContext.Profiles.FirstAsync(c => c.Id.Equals(profile.Id)).ConfigureAwait(false);
 
             if (existing == null) return false;
             existing.User = profile.User;

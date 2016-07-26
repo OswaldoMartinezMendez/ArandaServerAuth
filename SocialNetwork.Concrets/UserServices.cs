@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SocialNetwork.Contracts;
-using SocialNetwork.Data.DataContext;
 using SocialNetwork.Data.Repositories;
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.IoC;

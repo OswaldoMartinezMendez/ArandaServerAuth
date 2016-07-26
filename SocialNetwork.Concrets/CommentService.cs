@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SocialNetwork.Contracts;
 using SocialNetwork.Data.Repositories;
@@ -10,13 +7,15 @@ using SocialNetwork.IoC;
 
 namespace SocialNetwork.Concrets
 {
-    public class CommentService :ICommentService
+    public class CommentService : ICommentService
     {
         private readonly ICommentRepository _commentRepository;
+
         public CommentService()
         {
             _commentRepository = Factory.Resolver<ICommentRepository>();
         }
+
         public async Task<IEnumerable<Comment>> GetCommentForAsync()
         {
             return await _commentRepository.GetForAsync().ConfigureAwait(false);
