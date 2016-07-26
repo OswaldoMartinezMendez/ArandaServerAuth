@@ -51,11 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\CommentsDb.cs" />
     <Compile Include="DataContext\ProfilesDb.cs" />
     <Compile Include="DataContext\UsersDb.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607260047362_InitialCreate.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607260047362_InitialCreate.Designer.cs">
-      <DependentUpon>201607260047362_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\CommentMigration\201607261341257_InitialCreate.cs" />
+    <Compile Include="Migrations\CommentMigration\201607261341257_InitialCreate.Designer.cs">
+      <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CommentMigration\Configuration.cs" />
+    <Compile Include="Migrations\ProfileMigrations\201607261351395_InitialCreate.cs" />
+    <Compile Include="Migrations\ProfileMigrations\201607261351395_InitialCreate.Designer.cs">
+      <DependentUpon>201607261351395_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ProfileMigrations\Configuration.cs" />
     <Compile Include="Migrations\UserMigrations\201607252320182_InitialCreate.cs" />
@@ -77,8 +83,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ProfileMigrations\201607260047362_InitialCreate.resx">
-      <DependentUpon>201607260047362_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\CommentMigration\201607261341257_InitialCreate.resx">
+      <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ProfileMigrations\201607261351395_InitialCreate.resx">
+      <DependentUpon>201607261351395_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UserMigrations\201607252320182_InitialCreate.resx">
       <DependentUpon>201607252320182_InitialCreate.cs</DependentUpon>
@@ -93,6 +102,7 @@
       <Name>SocialNetwork.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
