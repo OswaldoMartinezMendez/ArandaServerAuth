@@ -1,20 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using SocialNetwork.Data.DataContext;
 using SocialNetwork.Domain.Entities;
 
 namespace SocialNetwork.Data.Repositories
 {
     public class ProfileRepository : IProfileRepository
     {
-        public Task<Profile> GetForAsync(User user)
+        private readonly ProfilesDb _ProfileDbContext;
+        public ProfileRepository()
         {
-            throw new NotImplementedException();
+            _ProfileDbContext = new ProfilesDb();
+        }
+        public async Task<IEnumerable<Profile>> GetForAsync()
+        {
+            return await _ProfileDbContext.Profiles.ToListAsync().ConfigureAwait(false);
         }
 
-        public Task UpdateAsync(Profile profile)
+        public async Task<bool> UpdateAsync(Profile profile)
+        {
+            var existing = await _ProfileDbContext.Profiles.FirstAsync(c => c.Id.Equals(profile.Id)).ConfigureAwait(false);
+
+            if (existing == null) return false;
+            existing.User = profile.User;
+            existing.Action = profile.Action;
+            existing.Name = profile.Name;
+
+            return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
+
+        public Task<int> InsertAsync(Profile newProfile)
         {
             throw new NotImplementedException();
         }
@@ -22,7 +42,8 @@ namespace SocialNetwork.Data.Repositories
 
     public interface IProfileRepository
     {
-        Task<Profile> GetForAsync(User user);
-        Task UpdateAsync(Profile profile);
+        Task<IEnumerable<Profile>> GetForAsync();
+        Task<bool> UpdateAsync(Profile profile);
+        Task<int> InsertAsync(Profile newProfile);
     }
 }
