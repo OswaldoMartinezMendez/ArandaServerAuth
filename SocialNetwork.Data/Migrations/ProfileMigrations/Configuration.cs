@@ -1,3 +1,5 @@
+using SocialNetwork.Domain.Entities;
+
 namespace SocialNetwork.Data.Migrations.ProfileMigrations
 {
     using System;
@@ -9,7 +11,7 @@ namespace SocialNetwork.Data.Migrations.ProfileMigrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             MigrationsDirectory = @"Migrations\ProfileMigrations";
         }
 
@@ -27,6 +29,25 @@ namespace SocialNetwork.Data.Migrations.ProfileMigrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Profiles.AddOrUpdate(
+                new Profile
+                {
+                    User = new User
+                    {
+                        Username = "jose@gmail.com",
+                        Address = "Address",
+                        Email = "jose@gmail.com",
+                        Name = "Jose Mendez",
+                        Password = "108888",
+                        Phone = "7849796",
+                        Subject = "2"
+                    },
+                    Name = "Visitante",
+                    Action = "Read",
+                    Alias = "Visitante",
+                    Enabled = true,
+                    Secret = "secret"
+                });
         }
     }
 }

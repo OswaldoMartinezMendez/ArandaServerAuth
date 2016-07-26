@@ -13,7 +13,7 @@ namespace SocialNetwork.Data.Migrations.ProfileMigrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201607261351395_InitialCreate"; }
+            get { return "201607261858520_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

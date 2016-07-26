@@ -14,6 +14,14 @@ namespace SocialNetwork.Domain.Entities
         [Required]
         [MaxLengthAttribute(250)]
         public string Name { get; set; }
+        [Required]
+        [MaxLengthAttribute(250)]
+        public string Alias { get; set; }
+        [Required]
+        [MaxLengthAttribute(250)]
+        public string Secret { get; set; }
+        [Required]
+        public bool Enabled { get; set; }
         [MaxLengthAttribute(250)]
         public string Action { get; set; }
 
