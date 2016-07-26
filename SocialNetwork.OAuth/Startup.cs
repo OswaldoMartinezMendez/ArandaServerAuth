@@ -8,7 +8,9 @@ using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Services;
 using IdentityServer3.Core.Services.Default;
 using Microsoft.Owin;
+using Microsoft.Practices.Unity;
 using Owin;
+using SocialNetwork.IoC;
 using SocialNetwork.OAuth.Configuration;
 
 [assembly: OwinStartup(typeof(SocialNetwork.OAuth.Startup))]
@@ -19,6 +21,7 @@ namespace SocialNetwork.OAuth
     {
         public void Configuration(IAppBuilder app)
         {
+            
             var factory = new IdentityServerServiceFactory()
                            .UseInMemoryUsers(Users.GetUsers())
                            .UseInMemoryClients(Clients.GetClients())
@@ -28,7 +31,7 @@ namespace SocialNetwork.OAuth
             {
                 AllowAll = true,
             };
-
+            
             factory.CorsPolicyService = new Registration<ICorsPolicyService>(cors);
             
             var options = new IdentityServerOptions
