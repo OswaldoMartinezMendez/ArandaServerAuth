@@ -27,6 +27,6 @@ namespace SocialNetwork.Domain.Entities
         [Required]
         public string Password { get; set; }
 
-        public virtual ICollection<Profile> Cities { get; set; } 
+        public virtual Profile Profile { get; set; } 
     }
 }

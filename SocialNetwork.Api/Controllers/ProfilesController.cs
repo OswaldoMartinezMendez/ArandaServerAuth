@@ -34,17 +34,18 @@ namespace SocialNetwork.Api.Controllers
                 .FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
                 ?.Value;
 
-            //if (email == null)
-            //{
-            //    return NotFound();
-            //}
+            if (email == null)
+            {
+                return NotFound();
+            }
 
             //var user = await userRepository.GetAsync(email);
+            var user = await _userService.GetByEmailAsync(email);
 
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             //var profile = await profileRepository.GetForAsync(user);
 
@@ -53,12 +54,12 @@ namespace SocialNetwork.Api.Controllers
             //    return NotFound();
             //}
 
-            var profile = new Profile
-            {
-                Action = "Action",
-            };
+            //var profile = new Profile
+            //{
+            //    Action = "Action",
+            //};
 
-            return Ok(profile);
+            return Ok(user);
         }
 
         [HttpGet]

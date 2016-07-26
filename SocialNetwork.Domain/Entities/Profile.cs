@@ -14,7 +14,5 @@ namespace SocialNetwork.Domain.Entities
         [Required]
         public string Name { get; set; }
         public string Action { get; set; }
-
-        public virtual User Country { get; set; }
     }
 }

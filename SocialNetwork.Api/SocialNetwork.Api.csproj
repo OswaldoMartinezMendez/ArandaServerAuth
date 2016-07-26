@@ -245,6 +245,10 @@
       <Project>{612b7111-abe4-40d4-9089-a7368a6e79dc}</Project>
       <Name>SocialNetwork.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork.IoC\SocialNetwork.IoC.csproj">
+      <Project>{7de605b0-83dd-44c8-a08b-937b006e624e}</Project>
+      <Name>SocialNetwork.IoC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

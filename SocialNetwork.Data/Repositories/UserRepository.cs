@@ -14,9 +14,10 @@ namespace SocialNetwork.Data.Repositories
 {
     public class UserRepository :  IUserRepository
     {
+        
         private readonly UsersDb _userDbContext;
 
-        public UserRepository(string connectionString)
+        public UserRepository()
         {
             _userDbContext = new UsersDb();
         }
@@ -30,9 +31,9 @@ namespace SocialNetwork.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByEmailAsync(string email)
+        public async Task<User> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return await _userDbContext.Users.FirstAsync(u => u.Email.Equals(email)).ConfigureAwait(false);
         }
     }
 

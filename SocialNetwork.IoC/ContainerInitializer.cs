@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
+using SocialNetwork.Data.Repositories;
 
 namespace SocialNetwork.IoC
 {
@@ -11,7 +12,7 @@ namespace SocialNetwork.IoC
     {
         public static void InitializeContainer(this IUnityContainer container)
         {
-            //container.InitializeUtilCommonDependency();
+            container.RegisterType<IUserRepository, UserRepository>();
         }
     }
 }
