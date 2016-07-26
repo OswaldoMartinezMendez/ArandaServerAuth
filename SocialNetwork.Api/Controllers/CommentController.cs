@@ -49,5 +49,12 @@ namespace SocialNetwork.Api.Controllers
             var result = await _commentService.InsertCommnetAsync(comment).ConfigureAwait(false);
             return Ok(result);
         }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeletetAsync(int idcomment)
+        {
+            var result = await _commentService.RemoveProfiletAsync(idcomment).ConfigureAwait(false);
+            return Ok(result);
+        }
     }
 }

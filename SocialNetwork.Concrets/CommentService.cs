@@ -35,5 +35,9 @@ namespace SocialNetwork.Concrets
         {
             return await _commentRepository.InsertAsync(newComment).ConfigureAwait(false);
         }
+        public async Task<bool> RemoveProfiletAsync(int idComment)
+        {
+            return await _commentRepository.RemoveAsync(idComment).ConfigureAwait(false);
+        }
     }
 }
