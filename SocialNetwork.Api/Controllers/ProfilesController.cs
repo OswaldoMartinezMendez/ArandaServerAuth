@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using SocialNetwork.Api.Helpers;
-using SocialNetwork.Data.Models;
 using SocialNetwork.Data.Repositories;
+using SocialNetwork.Domain.Entities;
 using Thinktecture.IdentityModel.WebApi;
 
 namespace SocialNetwork.Api.Controllers
@@ -54,11 +54,7 @@ namespace SocialNetwork.Api.Controllers
 
             var profile = new Profile
             {
-                Bio = "bio",
-                Birthday = Convert.ToDateTime("12-12-1990"),
-                Id = Guid.NewGuid(),
-                RegisteredAt = DateTime.Now,
-                UserId = Guid.NewGuid()
+                Action = "Action",
             };
 
             return Ok(profile);
@@ -67,45 +63,14 @@ namespace SocialNetwork.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAsync(string username, string password)
         {
-            var user = await userRepository.GetAsync(username, HashHelper.Sha512(password + username));
+            throw new NotImplementedException();
 
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var profile = await profileRepository.GetForAsync(user);
-
-            if (profile == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(profile);
         }
 
         [HttpPut]
         public async Task<IHttpActionResult> PutAsync(string username, string password, [FromBody]Profile profile)
         {
-            var user = await userRepository.GetAsync(username, HashHelper.Sha512(password + username));
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var toUpdate = await profileRepository.GetForAsync(user);
-
-            if (toUpdate == null)
-            {
-                return NotFound();
-            }
-
-            toUpdate.Bio = profile.Bio;
-
-            await profileRepository.UpdateAsync(toUpdate);
-
-            return Ok(toUpdate);
+            throw new NotImplementedException();
         }
     }
 }

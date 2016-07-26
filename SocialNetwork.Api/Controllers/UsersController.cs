@@ -8,47 +8,47 @@ namespace SocialNetwork.Api.Controllers
 {
     public class UsersController : SocialNetworkApiController
     {
-        private readonly IUserRepository userRepository;
+        //private readonly IUserRepository userRepository;
 
-        public UsersController(IUserRepository userRepository)
-        {
-            this.userRepository = userRepository;
-        }
+        //public UsersController(IUserRepository userRepository)
+        //{
+        //    this.userRepository = userRepository;
+        //}
 
-        [HttpGet]
-        public async Task<IHttpActionResult> GetAsync(string username, string password)
-        {
-            var user = await userRepository.GetAsync(username, 
-                HashHelper.Sha512(password + username));
+        //[HttpGet]
+        //public async Task<IHttpActionResult> GetAsync(string username, string password)
+        //{
+        //    var user = await userRepository.GetAsync(username, 
+        //        HashHelper.Sha512(password + username));
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
-        [HttpGet]
-        [Route("api/users/friends")]
-        public async Task<IHttpActionResult> FriendsAsync(string username, string password)
-        {
-            var user = await userRepository.GetAsync(username, HashHelper.Sha512(password + username));
+        //[HttpGet]
+        //[Route("api/users/friends")]
+        //public async Task<IHttpActionResult> FriendsAsync(string username, string password)
+        //{
+        //    var user = await userRepository.GetAsync(username, HashHelper.Sha512(password + username));
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var friends = (await userRepository.GetFriendsForAsync(user)).ToArray();
+        //    var friends = (await userRepository.GetFriendsForAsync(user)).ToArray();
 
-            if (!friends.Any())
-            {
-                return NotFound();
-            }
+        //    if (!friends.Any())
+        //    {
+        //        return NotFound();
+        //    }
             
-            return Ok(friends);
-        }
+        //    return Ok(friends);
+        //}
 
     }
 }

@@ -1,52 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using Dapper;
-using SocialNetwork.Data.Models;
+
+using SocialNetwork.Data.DataContext;
+
+using SocialNetwork.Domain.Entities;
 
 namespace SocialNetwork.Data.Repositories
 {
-    public class UserRepository : Repository, IUserRepository
+    public class UserRepository :  IUserRepository
     {
-        public UserRepository(Func<IDbConnection> openConnection) : base(openConnection) {}
+        private readonly UsersDb _userDbContext;
+
+        public UserRepository(string connectionString)
+        {
+            _userDbContext = new UsersDb();
+        }
 
         public async Task<User> GetAsync(string username, string password)
         {
-            using (var connection = OpenConnection())
-            {
-                var queryResult = await connection.QueryAsync<User>("select * from [Users] where [Username]=@username and [Password]=@password", 
-                    new { username, password });
-
-                return queryResult.SingleOrDefault();
-            }
+            return await _userDbContext.Users.FirstAsync(u => u.Username.Equals(username) && u.Password.Equals(password)).ConfigureAwait(false);
         }
         public async Task<User> GetAsync(string username)
         {
-            using (var connection = OpenConnection())
-            {
-                var queryResult = await connection.QueryAsync<User>("select * from [Users] where [Username]=@username",
-                    new { username });
-
-                return queryResult.SingleOrDefault();
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<FriendRelation>> GetFriendsForAsync(User user)
+        public Task<User> GetByEmailAsync(string email)
         {
-            using (var connection = OpenConnection())
-            {
-                return await connection.QueryAsync<FriendRelation>("select * from [Friends] where [InitiaterId]=@userId or [FriendId]=@userId", 
-                    new { userId = user.Id });
-            }
+            throw new NotImplementedException();
         }
     }
 
     public interface IUserRepository
     {
-        Task<IEnumerable<FriendRelation>> GetFriendsForAsync(User user);
+        
         Task<User> GetAsync(string username, string password);
         Task<User> GetAsync(string username);
+        Task<User> GetByEmailAsync(string email);
     }
 }

@@ -15,7 +15,6 @@ namespace SocialNetwork.Api.Autofac.Modules
 
             builder.RegisterType<UserRepository>().AsImplementedInterfaces().AsSelf();
             builder.RegisterType<ProfileRepository>().AsImplementedInterfaces().AsSelf();
-            builder.RegisterType<ShoutRepository>().AsImplementedInterfaces().AsSelf();
         }
     }
 }

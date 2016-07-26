@@ -3,30 +3,20 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using SocialNetwork.Data.Models;
+using SocialNetwork.Domain.Entities;
 
 namespace SocialNetwork.Data.Repositories
 {
-    public class ProfileRepository : Repository, IProfileRepository
+    public class ProfileRepository : IProfileRepository
     {
-        public ProfileRepository(Func<IDbConnection> openConnection) : base(openConnection) {}
-
-        public async Task<Profile> GetForAsync(User user)
+        public Task<Profile> GetForAsync(User user)
         {
-            using (var connection = OpenConnection())
-            {
-                var queryResult = await connection.QueryAsync<Profile>("select * from [Profiles] where [UserId]=@userId", new { userId = user.Id });
-
-                return queryResult.SingleOrDefault();
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(Profile profile)
+        public Task UpdateAsync(Profile profile)
         {
-            using (var connection = OpenConnection())
-            {
-                await connection.ExecuteAsync("update [Profiles] set [Bio]=@bio where [Id]=@profileId", new { profileId = profile.Id, bio = profile.Bio });
-            }
+            throw new NotImplementedException();
         }
     }
 
