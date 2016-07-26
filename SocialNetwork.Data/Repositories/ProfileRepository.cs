@@ -38,6 +38,13 @@ namespace SocialNetwork.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> RemoveAsync(int idProfile)
+        {
+            var profile = await _ProfileDbContext.Profiles.FirstAsync(c => c.Id.Equals(idProfile)).ConfigureAwait(false);
+            _ProfileDbContext.Profiles.Remove(profile);
+            return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
     }
 
     public interface IProfileRepository
@@ -45,5 +52,6 @@ namespace SocialNetwork.Data.Repositories
         Task<IEnumerable<Profile>> GetForAsync();
         Task<bool> UpdateAsync(Profile profile);
         Task<int> InsertAsync(Profile newProfile);
+        Task<bool> RemoveAsync(int idProfile);
     }
 }

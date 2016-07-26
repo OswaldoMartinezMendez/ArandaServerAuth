@@ -54,6 +54,13 @@ namespace SocialNetwork.Data.Repositories
 
             return await _userDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
+
+        public async Task<bool> RemoveAsync(int idUser)
+        {
+            var user = await _userDbContext.Users.FirstAsync(c => c.Id.Equals(idUser)).ConfigureAwait(false);
+            _userDbContext.Users.Remove(user);
+            return await _userDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
     }
 
     public interface IUserRepository

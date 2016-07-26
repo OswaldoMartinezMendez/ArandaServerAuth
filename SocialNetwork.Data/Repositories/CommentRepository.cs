@@ -49,6 +49,13 @@ namespace SocialNetwork.Data.Repositories
             await _commentDbContext.SaveChangesAsync().ConfigureAwait(false);
             return newComment.Id;
         }
+
+        public async Task<bool> RemoveAsync(int idComment)
+        {
+            var comment = await _commentDbContext.Comments.FirstAsync(c => c.Id.Equals(idComment)).ConfigureAwait(false);
+            _commentDbContext.Comments.Remove(comment);
+            return await _commentDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
     }
 
     public interface ICommentRepository
@@ -57,5 +64,6 @@ namespace SocialNetwork.Data.Repositories
         Task<bool> ApprovedAsync(int idComment);
         Task<bool> UpdateAsync(Comment comment);
         Task<int> InsertAsync(Comment newComment);
+        Task<bool> RemoveAsync(int idComment);
     }
 }
