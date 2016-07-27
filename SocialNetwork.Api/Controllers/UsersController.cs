@@ -4,9 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using SocialNetwork.Api.Helpers;
 using SocialNetwork.Contracts;
-using SocialNetwork.Data.Repositories;
 using SocialNetwork.Domain.Entities;
 using Thinktecture.IdentityModel.WebApi;
 
@@ -20,22 +18,22 @@ namespace SocialNetwork.Api.Controllers
 
         public UsersController(IProfileService profileService, IUserService userService)
         {
-            this._profileService = profileService;
-            this._userService = userService;
+            _profileService = profileService;
+            _userService = userService;
         }
 
         [HttpGet]
         [Route("api/allUsers")]
         public async Task<IHttpActionResult> GetAllAsync()
         {
-            var users =  await _userService.GetAllAsync().ConfigureAwait(false);
+            var users = await _userService.GetAllAsync().ConfigureAwait(false);
             if (users.Any())
                 return Ok(users);
             return NotFound();
         }
 
         [HttpGet]
-        [ResourceAuthorize("Visitante", "ContactDetails")]
+        //[ResourceAuthorize("Visitante", "ContactDetails")]
         public async Task<IHttpActionResult> GetAsync()
         {
             var email = ((ClaimsPrincipal) User)
@@ -75,14 +73,30 @@ namespace SocialNetwork.Api.Controllers
         public async Task<IHttpActionResult> GetAsync(string username, string password)
         {
             throw new NotImplementedException();
-
         }
 
         [HttpPut]
-        public async Task<IHttpActionResult> PutAsync(string username, string password, [FromBody]Profile profile)
+        public async Task<IHttpActionResult> PutAsync(string username, string password, [FromBody] User profile)
         {
             throw new NotImplementedException();
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> PostAsync(User newUser)
+        {
+            var newProfile = new Profile
+            {
+                User = newUser,
+                Action = "Read",
+                Alias = "Visitante",
+                Enabled = true,
+                Hierarchy = 4,
+                Name = "Visitante",
+                Secret = "secret"
+            };
+
+            var result = await _profileService.InserProfiletAsync(newProfile).ConfigureAwait(false);
+            return Ok(result);
+        }
     }
 }

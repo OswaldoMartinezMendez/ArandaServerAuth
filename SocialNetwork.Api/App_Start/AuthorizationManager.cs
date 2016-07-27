@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using SocialNetwork.Api.Helpers;
 using SocialNetwork.Concrets;
 using SocialNetwork.Contracts;
-using SocialNetwork.Data.Repositories;
 using SocialNetwork.Domain.Entities;
-using SocialNetwork.IoC;
 using Thinktecture.IdentityModel.Owin.ResourceAuthorization;
 
 namespace SocialNetwork.Api
@@ -16,14 +13,14 @@ namespace SocialNetwork.Api
         private static UserServices _instance;
         private readonly IProfileService _profileService;
 
-        public static UserServices userServices
-        {
-            get { return _instance ?? (_instance = new UserServices()); }
-        }
-
         public AuthorizationManager()
         {
             _profileService = new ProfileService();
+        }
+
+        public static UserServices userServices
+        {
+            get { return _instance ?? (_instance = new UserServices()); }
         }
 
         public override Task<bool> CheckAccessAsync(ResourceAuthorizationContext context)
@@ -39,16 +36,19 @@ namespace SocialNetwork.Api
 
         private async Task<bool> AuthorizeContactDetails(ResourceAuthorizationContext context)
         {
-            var user = GetCurrentUser(context.Principal);
-            var profiles = _profileService.GetByHierarchy(user.Id);
-            var currentProfile = profiles.First().Name;
+            //var user = GetCurrentUser(context.Principal);
+            //var profiles = _profileService.GetByHierarchy(user.Id);
+            //var currentProfile = profiles.First().Name;
 
             switch (context.Action.First().Value)
             {
                 case "Visitante":
-                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
+                {
+                  
+                    return await Eval(context.Principal.HasClaim("client_id", "Visitante"));
+                }
                 case "Autenticado":
-                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
+                    return await Eval(context.Principal.HasClaim("client_id", "Visitante"));
                 default:
                     return await Nok();
             }

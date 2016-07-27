@@ -35,9 +35,11 @@ namespace SocialNetwork.Data.Repositories
             return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
 
-        public Task<int> InsertAsync(Profile newProfile)
+        public async Task<int> InsertAsync(Profile newProfile)
         {
-            throw new NotImplementedException();
+             _ProfileDbContext.Profiles.Add(newProfile);
+             await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false);
+            return newProfile.Id;
         }
 
         public async Task<bool> RemoveAsync(int idProfile)
