@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Services.InMemory;
+using SocialNetwork.Data.Repositories;
 
 namespace SocialNetwork.OAuth.Configuration
 {
@@ -9,21 +11,25 @@ namespace SocialNetwork.OAuth.Configuration
     {
         public static List<InMemoryUser> GetUsers()
         {
-            return new List<InMemoryUser>
+            return BuidListUsers();
+        }
+
+        private static List<InMemoryUser> BuidListUsers()
+        {
+            var repo = new UserRepository();
+            var clientsList = repo.GetAsync();
+
+            return clientsList.Result.ToList().Select(itemList => new InMemoryUser
             {
-                new InMemoryUser
+                Subject = itemList.Email,
+                Username = itemList.Username,
+                Password = itemList.Password,
+                Claims = new[]
                 {
-                    Subject = "oswaldo1088@gmail.com",
-                    Username = "oswaldo1088@gmail.com",
-                    Password = "password",
-                    Claims = new []
-                    {
-                        new Claim(Constants.ClaimTypes.Name, "Oswaldo Martinez"),
-                        new Claim(Constants.ClaimTypes.Role, "Geek")
-                    },
-                    Enabled = true
-                }
-            };
+                    new Claim(Constants.ClaimTypes.Name, itemList.Name)
+                },
+                Enabled = true
+            }).ToList();
         }
     }
 }

@@ -41,5 +41,10 @@ namespace SocialNetwork.Concrets
             return await _profileRepository.GetByHierarchyAsync(iduser).ConfigureAwait(false);
         }
 
+        public IEnumerable<Profile> GetByHierarchy(int iduser)
+        {
+            return _profileRepository.GetByHierarchy(iduser);
+        }
+
     }
 }

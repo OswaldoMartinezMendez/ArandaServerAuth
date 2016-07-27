@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using SocialNetwork.Api.Helpers;
 using SocialNetwork.Contracts;
 using SocialNetwork.Data.Repositories;
@@ -11,6 +12,7 @@ using Thinktecture.IdentityModel.WebApi;
 
 namespace SocialNetwork.Api.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class UsersController : BaseController
     {
         private readonly IProfileService _profileService;
@@ -23,7 +25,17 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [HttpGet]
-        [ResourceAuthorize("Total", "ContactDetails")]
+        [Route("api/allUsers")]
+        public async Task<IHttpActionResult> GetAllAsync()
+        {
+            var users =  await _userService.GetAllAsync().ConfigureAwait(false);
+            if (users.Any())
+                return Ok(users);
+            return NotFound();
+        }
+
+        [HttpGet]
+        [ResourceAuthorize("Visitante", "ContactDetails")]
         public async Task<IHttpActionResult> GetAsync()
         {
             var email = ((ClaimsPrincipal) User)

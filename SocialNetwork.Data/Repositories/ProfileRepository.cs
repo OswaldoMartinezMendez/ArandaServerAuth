@@ -57,6 +57,17 @@ namespace SocialNetwork.Data.Repositories
                     .ConfigureAwait(false);
             return profiles.Any() ? profiles : list;
         }
+
+        public IEnumerable<Profile> GetByHierarchy(int idUser)
+        {
+            var list = new List<Profile>();
+            var profiles =
+                _ProfileDbContext.Profiles.Where(p => p.User.Id.Equals(idUser))
+                    .OrderBy(p => p.Hierarchy)
+                    .ToList();
+                    
+            return profiles.Any() ? profiles : list;
+        }
     }
 
     public interface IProfileRepository
@@ -66,5 +77,6 @@ namespace SocialNetwork.Data.Repositories
         Task<int> InsertAsync(Profile newProfile);
         Task<bool> RemoveAsync(int idProfile);
         Task<IEnumerable<Profile>> GetByHierarchyAsync(int idUser);
+        IEnumerable<Profile> GetByHierarchy(int idUser);
     }
 }

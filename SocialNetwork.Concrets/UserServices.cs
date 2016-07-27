@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SocialNetwork.Contracts;
 using SocialNetwork.Data.Repositories;
 using SocialNetwork.Domain.Entities;
@@ -20,6 +21,10 @@ namespace SocialNetwork.Concrets
             return await _userRepository.GetByEmailAsync(email).ConfigureAwait(true);
         }
 
+        public async Task<IEnumerable<User>> GetAllAsync()
+        {
+            return await _userRepository.GetAllAsync().ConfigureAwait(false);
+        }
         public async Task<User> GetAuthenticationAsync(string username, string password)
         {
             return await _userRepository.GetAsync(username, password).ConfigureAwait(false);
@@ -38,6 +43,11 @@ namespace SocialNetwork.Concrets
         public async Task<bool> UpdateUserAsync(User user)
         {
             return await _userRepository.UpdateAsync(user).ConfigureAwait(false);
+        }
+
+        public User GetByEmail(string email)
+        {
+            return _userRepository.GetByEmail(email);
         }
     }
 }
