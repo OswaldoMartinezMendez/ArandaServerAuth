@@ -44,7 +44,7 @@ namespace SocialNetwork.Api.Controllers
         public async Task<IHttpActionResult> PostAsync(Comment comment)
         {
             var user = Help.GetCurrentUser((ClaimsPrincipal) User);
-            comment.User = user.Result;
+            comment.User = user;
 
             var result = await _commentService.InsertCommnetAsync(comment).ConfigureAwait(false);
             return Ok(result);

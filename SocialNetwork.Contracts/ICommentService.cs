@@ -11,5 +11,6 @@ namespace SocialNetwork.Contracts
         Task<bool> UpdateCommentAsync(Comment comment);
         Task<int> InsertCommnetAsync(Comment newComment);
         Task<bool> RemoveProfiletAsync(int idComment);
+        Task<bool> RemoveIdUserAsync(int iduser);
     }
 }

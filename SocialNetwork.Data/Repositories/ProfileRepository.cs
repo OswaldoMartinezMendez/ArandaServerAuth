@@ -49,6 +49,13 @@ namespace SocialNetwork.Data.Repositories
             return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
 
+        public async Task<bool> RemoveIdUserAsync(int iduser)
+        {
+            var profile = await _ProfileDbContext.Profiles.Where(c => c.User.Id.Equals(iduser)).ToListAsync().ConfigureAwait(false);
+            _ProfileDbContext.Profiles.RemoveRange(profile);
+            return await _ProfileDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
+
         public async Task<IEnumerable<Profile>> GetByHierarchyAsync(int idUser)
         {
             var list = new List<Profile>();
@@ -80,5 +87,6 @@ namespace SocialNetwork.Data.Repositories
         Task<bool> RemoveAsync(int idProfile);
         Task<IEnumerable<Profile>> GetByHierarchyAsync(int idUser);
         IEnumerable<Profile> GetByHierarchy(int idUser);
+        Task<bool> RemoveIdUserAsync(int iduser);
     }
 }

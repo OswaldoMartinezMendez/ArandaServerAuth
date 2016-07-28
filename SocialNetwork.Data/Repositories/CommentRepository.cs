@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Threading.Tasks;
 using SocialNetwork.Data.DataContext;
 using SocialNetwork.Domain.Entities;
@@ -45,8 +47,13 @@ namespace SocialNetwork.Data.Repositories
 
         public async Task<int> InsertAsync(Comment newComment)
         {
+            var user = newComment.User;
+            newComment.User = null;
             _commentDbContext.Comments.Add(newComment);
             await _commentDbContext.SaveChangesAsync().ConfigureAwait(false);
+
+            _commentDbContext.Database.ExecuteSqlCommand("UPDATE [dbo].[Comments] SET [User_Id] =" + user.Id + " WHERE Id = " + newComment.Id);
+
             return newComment.Id;
         }
 
@@ -54,6 +61,13 @@ namespace SocialNetwork.Data.Repositories
         {
             var comment = await _commentDbContext.Comments.FirstAsync(c => c.Id.Equals(idComment)).ConfigureAwait(false);
             _commentDbContext.Comments.Remove(comment);
+            return await _commentDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
+        }
+
+        public async Task<bool> RemoveIdUserAsync(int iduser)
+        {
+            var profile = await _commentDbContext.Comments.Where(c => c.User.Id.Equals(iduser)).ToListAsync().ConfigureAwait(false);
+            _commentDbContext.Comments.RemoveRange(profile);
             return await _commentDbContext.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
     }
@@ -65,5 +79,6 @@ namespace SocialNetwork.Data.Repositories
         Task<bool> UpdateAsync(Comment comment);
         Task<int> InsertAsync(Comment newComment);
         Task<bool> RemoveAsync(int idComment);
+        Task<bool> RemoveIdUserAsync(int iduser);
     }
 }

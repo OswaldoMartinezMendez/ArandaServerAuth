@@ -15,11 +15,13 @@ namespace SocialNetwork.Api.Controllers
     {
         private readonly IProfileService _profileService;
         private readonly IUserService _userService;
+        private readonly ICommentService _commentService;
 
-        public UsersController(IProfileService profileService, IUserService userService)
+        public UsersController(IProfileService profileService, IUserService userService, ICommentService commentService)
         {
             _profileService = profileService;
             _userService = userService;
+            _commentService = commentService;
         }
 
         [HttpGet]
@@ -96,6 +98,16 @@ namespace SocialNetwork.Api.Controllers
             };
 
             var result = await _profileService.InserProfiletAsync(newProfile).ConfigureAwait(false);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeletetAsync(int iduser)
+        {
+            await _profileService.RemoveIdUserAsync(iduser).ConfigureAwait(false);
+            await _commentService.RemoveIdUserAsync(iduser).ConfigureAwait(false);
+
+            var result = await _userService.RemoveAsync(iduser).ConfigureAwait(false);
             return Ok(result);
         }
     }

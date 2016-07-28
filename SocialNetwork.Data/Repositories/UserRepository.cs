@@ -90,5 +90,6 @@ namespace SocialNetwork.Data.Repositories
         Task<bool> UpdateAsync(User user);
         Task<IEnumerable<User>> GetAsync();
         User GetByEmail(string email);
+        Task<bool> RemoveAsync(int idUser);
     }
 }

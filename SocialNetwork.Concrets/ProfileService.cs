@@ -45,6 +45,10 @@ namespace SocialNetwork.Concrets
         {
             return _profileRepository.GetByHierarchy(iduser);
         }
+        public async Task<bool> RemoveIdUserAsync(int iduser)
+        {
+            return await _profileRepository.RemoveIdUserAsync(iduser).ConfigureAwait(false);
+        }
 
     }
 }

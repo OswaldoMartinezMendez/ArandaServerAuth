@@ -39,5 +39,10 @@ namespace SocialNetwork.Concrets
         {
             return await _commentRepository.RemoveAsync(idComment).ConfigureAwait(false);
         }
+
+        public async Task<bool> RemoveIdUserAsync(int iduser)
+        {
+            return await _commentRepository.RemoveIdUserAsync(iduser).ConfigureAwait(false);
+        }
     }
 }

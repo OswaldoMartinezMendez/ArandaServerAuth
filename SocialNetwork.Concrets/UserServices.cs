@@ -20,7 +20,7 @@ namespace SocialNetwork.Concrets
         {
             return await _userRepository.GetByEmailAsync(email).ConfigureAwait(true);
         }
-
+        
         public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await _userRepository.GetAllAsync().ConfigureAwait(false);
@@ -38,6 +38,10 @@ namespace SocialNetwork.Concrets
         public async Task<int> InsertUserAsync(User newUser)
         {
             return await _userRepository.InsertAsync(newUser).ConfigureAwait(false);
+        }
+        public async Task<bool> RemoveAsync(int iduser)
+        {
+            return await _userRepository.RemoveAsync(iduser).ConfigureAwait(false);
         }
 
         public async Task<bool> UpdateUserAsync(User user)

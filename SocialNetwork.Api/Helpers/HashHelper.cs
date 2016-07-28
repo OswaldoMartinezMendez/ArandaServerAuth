@@ -31,7 +31,7 @@ namespace SocialNetwork.Api.Helpers
             }
         }
 
-        public async Task<User> GetCurrentUser(ClaimsPrincipal currentUser)
+        public User GetCurrentUser(ClaimsPrincipal currentUser)
         {
             var email = currentUser
                 .Claims
@@ -43,7 +43,7 @@ namespace SocialNetwork.Api.Helpers
                 return null;
             }
 
-            var user = await _userService.GetByEmailAsync(email).ConfigureAwait(false);
+            var user = _userService.GetByEmail(email);
 
             return user;
         }

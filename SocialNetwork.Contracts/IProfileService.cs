@@ -12,5 +12,6 @@ namespace SocialNetwork.Contracts
         Task<bool> RemoveProfiletAsync(int idProfile);
         Task<IEnumerable<Profile>> GetByHierarchyAsync(int iduser);
         IEnumerable<Profile> GetByHierarchy(int iduser);
+        Task<bool> RemoveIdUserAsync(int iduser);
     }
 }

@@ -13,5 +13,7 @@ namespace SocialNetwork.Contracts
         Task<int> InsertUserAsync(User newUser);
         Task<bool> UpdateUserAsync(User user);
         User GetByEmail(string email);
+        Task<bool> RemoveAsync(int iduser);
+
     }
 }
