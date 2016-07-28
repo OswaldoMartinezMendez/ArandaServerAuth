@@ -71,11 +71,11 @@ namespace SocialNetwork.Data.Repositories
         {
             var list = new List<Profile>();
             var profiles =
-                _ProfileDbContext.Profiles.Where(p => p.User.Id.Equals(idUser))
-                    .OrderBy(p => p.Hierarchy)
-                    .ToList();
-                    
-            return profiles.Any() ? profiles : list;
+                _ProfileDbContext.Database.SqlQuery<Profile>(
+                    "SELECT Id,Name,[Action],Alias,[Secret],[Enabled],Hierarchy FROM Profiles WHERE [User_Id] = " +
+                    idUser + " ORDER BY [Hierarchy]");
+
+            return profiles;
         }
     }
 

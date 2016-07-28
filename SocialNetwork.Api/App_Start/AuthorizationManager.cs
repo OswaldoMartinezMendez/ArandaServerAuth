@@ -36,19 +36,20 @@ namespace SocialNetwork.Api
 
         private async Task<bool> AuthorizeContactDetails(ResourceAuthorizationContext context)
         {
-            //var user = GetCurrentUser(context.Principal);
-            //var profiles = _profileService.GetByHierarchy(user.Id);
-            //var currentProfile = profiles.First().Name;
+            var user = GetCurrentUser(context.Principal);
+            var profiles = _profileService.GetByHierarchy(user.Id);
+            var currentProfile = profiles.First().Name;
 
             switch (context.Action.First().Value)
             {
                 case "Visitante":
-                {
-                  
-                    return await Eval(context.Principal.HasClaim("client_id", "Visitante"));
-                }
+                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
                 case "Autenticado":
-                    return await Eval(context.Principal.HasClaim("client_id", "Visitante"));
+                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
+                case "Editor":
+                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
+                case "Administrador":
+                    return await Eval(context.Principal.HasClaim("client_id", currentProfile));
                 default:
                     return await Nok();
             }

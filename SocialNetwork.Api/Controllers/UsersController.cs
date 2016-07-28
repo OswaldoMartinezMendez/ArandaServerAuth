@@ -35,7 +35,6 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [HttpGet]
-        //[ResourceAuthorize("Visitante", "ContactDetails")]
         public async Task<IHttpActionResult> GetAsync()
         {
             var email = ((ClaimsPrincipal) User)
@@ -48,25 +47,12 @@ namespace SocialNetwork.Api.Controllers
                 return NotFound();
             }
 
-            //var user = await userRepository.GetAsync(email);
             var user = await _userService.GetByEmailAsync(email);
 
             if (user == null)
             {
                 return NotFound();
             }
-
-            //var profile = await profileRepository.GetForAsync(user);
-
-            //if (profile == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var profile = new Profile
-            //{
-            //    Action = "Action",
-            //};
 
             return Ok(user);
         }
@@ -102,6 +88,7 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [HttpDelete]
+        //[ResourceAuthorize("Administrador", "ContactDetails")]
         public async Task<IHttpActionResult> DeletetAsync(int iduser)
         {
             await _profileService.RemoveIdUserAsync(iduser).ConfigureAwait(false);

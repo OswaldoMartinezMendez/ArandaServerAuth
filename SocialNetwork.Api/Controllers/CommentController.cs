@@ -26,7 +26,6 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [HttpGet]
-        //[ResourceAuthorize("Total", "ContactDetails")]
         public async Task<IHttpActionResult> GetAsync()
         {
             var comments = await _commentService.GetCommentForAsync().ConfigureAwait(false);
