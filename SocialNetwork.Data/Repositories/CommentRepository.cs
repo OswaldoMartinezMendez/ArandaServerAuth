@@ -20,7 +20,9 @@ namespace SocialNetwork.Data.Repositories
 
         public async Task<IEnumerable<Comment>> GetForAsync()
         {
-            return await _commentDbContext.Comments.ToListAsync().ConfigureAwait(false);
+            var listComments = new List<Comment>();
+            var result = await _commentDbContext.Comments.ToListAsync().ConfigureAwait(false);
+            return result.Any() ? result : listComments;
         }
 
         public async Task<bool> ApprovedAsync(int idComment)

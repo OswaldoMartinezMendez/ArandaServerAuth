@@ -9,7 +9,7 @@ namespace SocialNetwork.Data.Migrations.UserMigrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             MigrationsDirectory = @"Migrations\UserMigrations";
         }
 

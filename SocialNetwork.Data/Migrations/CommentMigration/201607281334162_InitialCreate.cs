@@ -22,20 +22,20 @@ namespace SocialNetwork.Data.Migrations.CommentMigration
                 .ForeignKey("dbo.Users", t => t.User_Id)
                 .Index(t => t.User_Id);
             
-            CreateTable(
-                "dbo.Users",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 250),
-                        Address = c.String(nullable: false),
-                        Phone = c.String(nullable: false, maxLength: 250),
-                        Email = c.String(nullable: false),
-                        Subject = c.String(nullable: false, maxLength: 250),
-                        Username = c.String(nullable: false, maxLength: 250),
-                        Password = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
+            //CreateTable(
+            //    "dbo.Users",
+            //    c => new
+            //        {
+            //            Id = c.Int(nullable: false, identity: true),
+            //            Name = c.String(nullable: false, maxLength: 250),
+            //            Address = c.String(nullable: false),
+            //            Phone = c.String(nullable: false, maxLength: 250),
+            //            Email = c.String(nullable: false),
+            //            Subject = c.String(nullable: false, maxLength: 250),
+            //            Username = c.String(nullable: false, maxLength: 250),
+            //            Password = c.String(nullable: false),
+            //        })
+            //    .PrimaryKey(t => t.Id);
             
         }
         

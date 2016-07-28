@@ -1,3 +1,5 @@
+using SocialNetwork.Domain.Entities;
+
 namespace SocialNetwork.Data.Migrations.CommentMigration
 {
     using System;
@@ -27,6 +29,17 @@ namespace SocialNetwork.Data.Migrations.CommentMigration
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Comments.AddOrUpdate(
+                  new Comment
+                  {
+                      User = null,
+                      Approved = true,
+                      Date = DateTime.Now,
+                      Description = "Comentario test",
+                      Subject = "Test"
+                  }
+                );
+
         }
     }
 }

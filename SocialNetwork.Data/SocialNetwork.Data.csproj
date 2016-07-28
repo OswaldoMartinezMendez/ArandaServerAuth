@@ -54,24 +54,16 @@
     <Compile Include="DataContext\CommentsDb.cs" />
     <Compile Include="DataContext\ProfilesDb.cs" />
     <Compile Include="DataContext\UsersDb.cs" />
-    <Compile Include="Migrations\CommentMigration\201607261341257_InitialCreate.cs" />
-    <Compile Include="Migrations\CommentMigration\201607261341257_InitialCreate.Designer.cs">
-      <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\CommentMigration\201607281334162_InitialCreate.cs" />
+    <Compile Include="Migrations\CommentMigration\201607281334162_InitialCreate.Designer.cs">
+      <DependentUpon>201607281334162_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CommentMigration\Configuration.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.cs" />
-    <Compile Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.Designer.cs">
-      <DependentUpon>201607261912236_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ProfileMigrations\201607281326533_InitialCreate.cs" />
+    <Compile Include="Migrations\ProfileMigrations\201607281326533_InitialCreate.Designer.cs">
+      <DependentUpon>201607281326533_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ProfileMigrations\Configuration.cs" />
-    <Compile Include="Migrations\UserMigrations\201607252320182_InitialCreate.cs" />
-    <Compile Include="Migrations\UserMigrations\201607252320182_InitialCreate.Designer.cs">
-      <DependentUpon>201607252320182_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserMigrations\201607260541463_InitialCreate1.cs" />
-    <Compile Include="Migrations\UserMigrations\201607260541463_InitialCreate1.Designer.cs">
-      <DependentUpon>201607260541463_InitialCreate1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\UserMigrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -83,26 +75,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\CommentMigration\201607261341257_InitialCreate.resx">
-      <DependentUpon>201607261341257_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ProfileMigrations\201607261912236_InitialCreate.resx">
-      <DependentUpon>201607261912236_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserMigrations\201607252320182_InitialCreate.resx">
-      <DependentUpon>201607252320182_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserMigrations\201607260541463_InitialCreate1.resx">
-      <DependentUpon>201607260541463_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SocialNetwork.Domain\SocialNetwork.Domain.csproj">
       <Project>{612b7111-abe4-40d4-9089-a7368a6e79dc}</Project>
       <Name>SocialNetwork.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\CommentMigration\201607281334162_InitialCreate.resx">
+      <DependentUpon>201607281334162_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ProfileMigrations\201607281326533_InitialCreate.resx">
+      <DependentUpon>201607281326533_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

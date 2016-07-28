@@ -28,8 +28,8 @@ namespace SocialNetwork.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAsync()
         {
-            var comments = await _commentService.GetCommentForAsync().ConfigureAwait(false);
-            return comments.Any() ? Ok(comments) : null;
+            var result = await _commentService.GetCommentForAsync().ConfigureAwait(false);
+            return Ok(result);
         }
 
         [HttpPut]

@@ -30,25 +30,82 @@ namespace SocialNetwork.Data.Migrations.ProfileMigrations
             //    );
             //
             context.Profiles.AddOrUpdate(
+                 new Profile
+                 {
+                     User = new User
+                     {
+                         Username = "Visitante@aranda.com",
+                         Address = "Address: Cra. 69 #98 A 11 Piso 7, Bogotá, Cundinamarca",
+                         Email = "Visitante@aranda.com",
+                         Name = "Aranda Visitante",
+                         Password = "password",
+                         Phone = "7563000",
+                         Subject = "4"
+                     },
+                     Name = "Visitante",
+                     Action = "Lee",
+                     Alias = "Visitante",
+                     Enabled = true,
+                     Secret = "secret",
+                     Hierarchy = 4
+                 },
                 new Profile
                 {
                     User = new User
                     {
-                        Username = "jose@gmail.com",
-                        Address = "Address",
-                        Email = "jose@gmail.com",
-                        Name = "Jose Mendez",
-                        Password = "108888",
-                        Phone = "7849796",
-                        Subject = "2"
+                        Username = "Autenticado@aranda.com",
+                        Address = "Address: Cra. 69 #98 A 11 Piso 7, Bogotá, Cundinamarca",
+                        Email = "Autenticado@aranda.com",
+                        Name = "Aranda Autenticado",
+                        Password = "password",
+                        Phone = "7563000",
+                        Subject = "3"
                     },
-                    Name = "Visitante",
-                    Action = "Read",
-                    Alias = "Visitante",
+                    Name = "Autenticado",
+                    Action = "Comenta",
+                    Alias = "Autenticado",
                     Enabled = true,
                     Secret = "secret",
-                    Hierarchy = 4
-                });
+                    Hierarchy = 3
+                },
+                 new Profile
+                 {
+                     User = new User
+                     {
+                         Username = "Editor@aranda.com",
+                         Address = "Address: Cra. 69 #98 A 11 Piso 7, Bogotá, Cundinamarca",
+                         Email = "Editor@aranda.com",
+                         Name = "Aranda Editor",
+                         Password = "password",
+                         Phone = "7563000",
+                         Subject = "2"
+                     },
+                     Name = "Editor",
+                     Action = "Aprueba",
+                     Alias = "Editor",
+                     Enabled = true,
+                     Secret = "secret",
+                     Hierarchy = 2
+                 },
+                 new Profile
+                 {
+                     User = new User
+                     {
+                         Username = "Admin@aranda.com",
+                         Address = "Address: Cra. 69 #98 A 11 Piso 7, Bogotá, Cundinamarca",
+                         Email = "Admin@aranda.com",
+                         Name = "Aranda Admin",
+                         Password = "password",
+                         Phone = "7563000",
+                         Subject = "1"
+                     },
+                     Name = "Admin",
+                     Action = "Total",
+                     Alias = "Admin",
+                     Enabled = true,
+                     Secret = "secret",
+                     Hierarchy = 1
+                 });
         }
     }
 }
