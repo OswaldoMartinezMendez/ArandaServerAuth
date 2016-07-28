@@ -7,8 +7,8 @@ Solucion Asp.Net
 
 1. Clonar la solucion desde GitHub
  - Clonar desde: https://github.com/OswaldoMartinezMendez/ArandaServerAuth.git
- - Abrir la solucion desde (Preferiblemente desde Visual Studio 2013 o superior)
- - La solución cuanta con dos proyectos web, se debe asegurar que la solución inicie con los dos:
+ - Abrir la solucion (Preferiblemente desde Visual Studio 2013 o superior)
+ - La solución cuenta con dos proyectos web, se debe asegurar que la solución inicie con los dos:
 	Dar click derecho en la solución>properties>(en el menu de la izquierda)Commo Properties>StartUp projects, allí asegurarse que
 	SocialNetwork.Api y SocialNetwork.OAuth tengan en la casilla de accion "Start"
 
